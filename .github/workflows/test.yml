@@ -30,15 +30,16 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
         node-version: [14, 16, 18, 20, 22]
-        browser: [chrome, firefox]
     steps:
       - uses: actions/checkout@v4
       - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Setup Browser
-        uses: browser-actions/setup-${{ matrix.browser }}@latest
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@latest
+      - name: Setup Firefox
+        uses: browser-actions/setup-firefox@latest
       - name: Download build artifacts
         uses: actions/download-artifact@v4
         with:
