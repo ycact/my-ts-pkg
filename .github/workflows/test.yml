@@ -54,4 +54,4 @@ jobs:
           npm install --production
           npm install tape tap-spec
       - name: Run tests
-        run: node test/test.js
+        run: node __tests__/test.js
