@@ -44,7 +44,7 @@ jobs:
       - name: Create minimal test environment (Windows)
         if: matrix.os == 'windows-latest'
         run: |
-          if exist node_modules rmdir /s /q node_modules
+          if (Test-Path -Path "node_modules") { Remove-Item -Recurse -Force node_modules }
           npm install --production
           npm install jest ts-jest ts-node @types/jest
       - name: Create minimal test environment (Unix)
