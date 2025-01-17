@@ -30,12 +30,15 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
         node-version: [14, 16, 18, 20, 22]
+        browser: [chrome, firefox]
     steps:
       - uses: actions/checkout@v4
       - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Setup Browser
+        uses: browser-actions/setup-${{ matrix.browser }}@latest
       - name: Download build artifacts
         uses: actions/download-artifact@v4
         with:
@@ -46,12 +49,15 @@ jobs:
         run: |
           if (Test-Path -Path "node_modules") { Remove-Item -Recurse -Force node_modules }
           npm install --production
-          npm install jest ts-jest ts-node @types/jest
+          npm install jest ts-jest ts-node @types/jest playwright @playwright/test
       - name: Create minimal test environment (Unix)
         if: matrix.os != 'windows-latest'
         run: |
           rm -rf node_modules
           npm install --production
-          npm install jest ts-jest ts-node @types/jest
-      - name: Run tests
+          npm install jest ts-jest ts-node @types/jest playwright @playwright/test
+      - name: Run tests with browser
+        if: matrix.os == 'ubuntu-latest'
+        run: npx playwright install-deps
+      - name: Run tests with Node.js
         run: npx jest
