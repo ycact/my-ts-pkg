@@ -1,8 +1,8 @@
-import { existsSync, rmSync, writeFileSync } from 'fs';
+import { existsSync, PathLike, rmSync, writeFileSync } from 'fs';
 import { generateDtsBundle } from 'dts-bundle-generator';
 import { Target } from 'bun';
 
-const deleteFolder = (folderPath) => {
+const deleteFolder = (folderPath: PathLike) => {
   try {
     if (existsSync(folderPath)) {
       rmSync(folderPath, { recursive: true, force: true });

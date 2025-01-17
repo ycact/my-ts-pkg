@@ -13,8 +13,8 @@
     "strict": true,
     "isolatedModules": true,
     "outDir": "dist",
-    "types": []
+    "types": ["jest", "node", "bun-types"],
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "scripts/**/*", "__tests__/**/*"],
   "exclude": ["node_modules", "dist"]
 }

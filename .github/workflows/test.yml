@@ -46,12 +46,12 @@ jobs:
         run: |
           if exist node_modules rmdir /s /q node_modules
           npm install --production
-          npm install jest ts-jest @types/jest
+          npm install jest ts-jest ts-node @types/jest
       - name: Create minimal test environment (Unix)
         if: matrix.os != 'windows-latest'
         run: |
           rm -rf node_modules
           npm install --production
-          npm install jest ts-jest @types/jest
+          npm install jest ts-jest ts-node @types/jest
       - name: Run tests
         run: npx jest
