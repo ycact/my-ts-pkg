@@ -1,0 +1,32 @@
+# Build output
+dist
+build
+
+# Dependencies
+node_modules
+
+# Test coverage
+coverage
+
+# Bundle files
+*.bundle.js
+*.min.js
+
+# Config files
+*.config.js
+*.config.ts
+
+# Type definitions
+*.d.ts
+
+# Assets
+*.svg
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.ico
+*.woff
+*.woff2
+*.eot
+*.ttf
