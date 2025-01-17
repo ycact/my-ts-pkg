@@ -60,5 +60,7 @@ jobs:
       - name: Run tests with browser
         if: matrix.os == 'ubuntu-latest'
         run: npx playwright install-deps
-      - name: Run tests with Node.js
+      - name: Run Jest tests
         run: npx jest
+      - name: Run Playwright tests
+        run: npx playwright test
